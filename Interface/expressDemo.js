@@ -25,10 +25,16 @@ app.get('/', function (req, res) {
 
 app.post('/getlist', function (req, res) {
     console.log(req.body);
-    var response = [{
-        name: req.body.name,
-        desc: req.body.name + '描述'
-    }];
+    var response = {data: []};
+    if (req.body.name && req.body.desc) {
+        response = {
+            data: [{
+                name: req.body.name,
+                desc: req.body.desc
+            }]
+        };
+    }
+
     res.end(JSON.stringify(response))
 });
 
